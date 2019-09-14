@@ -3,9 +3,14 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-
+// MongoDB
 const items = require('./routes/api/Item');
+// Mysql
+// const items = require('./routes/api/_Item'); 
 const app = express();
+const db = require('./config/key.js').mongoURI;
+
+
 
 // Bodyparser Middleware
 app.use(bodyParser.json());
@@ -14,6 +19,14 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use('/api/items',items);
+
+
+// mongoose
+//   .connect(db,{ useNewUrlParser: true })
+//   .then(() => console.log('MongoDb Connected...')
+//   .catch(err => console.log(err))
+//   )
+
 
 // Serve Static assets if in production
 if (process.env.NODE_ENV==='production') {
