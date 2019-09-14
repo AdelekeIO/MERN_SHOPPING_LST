@@ -1,10 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const path = require('path');
 
 // MongoDB
-const items = require('./routes/api/Item');
+// const items = require('./routes/api/Item');
 // Mysql
 // const items = require('./routes/api/_Item'); 
 const app = express();
@@ -13,12 +12,15 @@ const db = require('./config/key.js').mongoURI;
 
 
 // Bodyparser Middleware
-app.use(bodyParser.json());
+app.use(express.json());
 
-app.use(bodyParser.urlencoded({
+app.use(express.urlencoded({
   extended: true
 }));
-app.use('/api/items',items);
+
+// Routes
+app.use('/api/items',require('./routes/api/Item'));
+app.use('/api/users',require('./routes/api/users'));
 
 
 // mongoose

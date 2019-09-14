@@ -1,0 +1,4 @@
+{
+    "mongoURI":"",
+    "jwtSecret":"Anyway_MyjwtS3cret"
+}
