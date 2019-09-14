@@ -1,13 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const config = require('config');
 
 // MongoDB
 // const items = require('./routes/api/Item');
 // Mysql
 // const items = require('./routes/api/_Item'); 
 const app = express();
-const db = require('./config/key.js').mongoURI;
+const db = config.get('mongoURI');
 
 
 

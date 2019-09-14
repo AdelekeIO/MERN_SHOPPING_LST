@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt =require('bcrypt');;
+const bcrypt =require('bcrypt');
+const config = require('config');
+const jwt = require('jsonwebtoken')
 
 // Item Model Mongoose
 // const Item = require('../../model/Item');

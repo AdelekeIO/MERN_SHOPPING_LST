@@ -1,16 +1,16 @@
 var mysql = require('mysql'); 
+const config = require('config');
 
-const host = require('../config/key').host;
-const password = require('../config/key').password;
-const user = require('../config/key').user;
-const database = require('../config/key').database;
+
+
+// const host = require('../config/key').host;
 
 
 con = mysql.createConnection({
-    host: host,
-    user: user,
-    password: password,
-    database: database
+    host:  config.get('host'),
+    user:  config.get('user'),
+    password:  config.get('password'),
+    database:  config.get('database')
   })
   
 
