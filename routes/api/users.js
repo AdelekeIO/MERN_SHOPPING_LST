@@ -46,7 +46,25 @@ router.post('/', (req, res)=>{
                     con.query(`INSERT INTO users (id, name, email, password) VALUES (null,'${newUser.name}', '${newUser.email}', '${newUser.password}')`, function (err, result) {
                         if (err) throw err;
                            console.log(result);   
-                           res.json({msg:"User is successfully added",user:{emai:newUser.email,id:result.insertId,name:newUser.name}}); 
+
+                            jwt.sign(
+                                { id: result.insertId },
+                                config.get('jwtSecret'),
+                                {expiresIn: 3600},
+                                (err, token)=>{
+                                    if (err) throw err;
+                                    res.json({
+                                        msg:"User is successfully added",
+                                        token:token,
+                                        user:{
+                                            emai:newUser.email,
+                                            id:result.insertId,
+                                            name:newUser.name
+                                         }}); 
+                                }
+                            )
+
+                           
                     }); 
                 })
             })

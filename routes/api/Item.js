@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth =  require('../../middleware/auth');
 
 // Item Model Mongoose
 const Item = require('../../model/Item');
@@ -13,8 +14,8 @@ console.log(date());
 
 // @route   GET api.items
 // @desc    Get All Items
-// @access  Public
-router.get('/', (req, res)=>{
+// @access  Private
+router.get('/', auth, (req, res)=>{
 
   // console.log(now.today);
     
@@ -27,8 +28,8 @@ router.get('/', (req, res)=>{
 
 // @route   Post api/items
 // @desc    Post  Items
-// @access  Public
-router.post('/', (req, res)=>{
+// @access  Private
+router.post('/', auth, (req, res)=>{
     let name = req.body.name;
       console.log(req.body);
       
@@ -46,8 +47,8 @@ router.post('/', (req, res)=>{
 
 // @route   Delete api/items/:id
 // @desc    Delete A  Items
-// @access  Public
-router.delete('/:id', (req, res)=>{
+// @access  Private
+router.delete('/:id', auth, (req, res)=>{
   let id = req.params.id;
     
     con.query(`DELETE FROM items WHERE id=${id}`, function (err, result) {
